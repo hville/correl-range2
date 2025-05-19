@@ -1,0 +1,39 @@
+{
+  "name": "@hugov/correl-range2",
+  "type": "module",
+  "main": "sim.js",
+  "browser": "sim.js",
+  "version": "0.1.0",
+  "description": "monte carlo simulation for correlated variables expressed as ranges",
+  "keywords": [
+    "correlated",
+    "correlation",
+    "random",
+    "random number generator",
+    "range",
+    "simulation",
+    "model"
+  ],
+  "author": "Hugo Villeneuve",
+  "dependencies": {
+    "@hugov/byte-views": "^0.1.0",
+    "@hugov/metanorm": "^0.3.0",
+    "lazy-stats": "^4.3.0",
+    "norm-dist": "^3.1.0",
+    "sample-distribution": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.17",
+    "assert-op": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hville/correl-range2.git"
+  },
+  "scripts": {
+    "test": "node ./models/sensitivity",
+    "pub": "npm publish --access public",
+    "prepublishOnly": "npm test"
+  },
+  "license": "MIT"
+}
