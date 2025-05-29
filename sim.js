@@ -1,7 +1,7 @@
 import metanorm from '@hugov/metanorm'
 import RandomNumber from './src/_random-number.js'
 import Sim from './src/_sim.js'
-import parse from './src/parser.js'
+import parser from '@hugov/metanorm/parser.js'
 export {default as Stats} from './src/_stats.js'
 
 /**
@@ -19,8 +19,8 @@ export default function( factory, {confidence=0.8, resolution=128}={} ) {
 	let init = false
 	const rndFn = function(strings, ...values) {
 		if (init) throw Error('distribution definition must be at initiation')
-		const {points, risks} = parse(strings, ...values)
-		return rndNs[rndNs.length] = new RandomNumber( metanorm.apply(null, points) )._link(riskNames, risks)
+		const {points, options, risks} = parser(strings, ...values)
+		return rndNs[rndNs.length] = new RandomNumber( metanorm.apply(null, points, options) )._link(riskNames, risks)
 	}
 	const model = factory(rndFn)
 	init = true
