@@ -20,10 +20,9 @@ export default function( factory, {confidence=0.8, resolution=128}={} ) {
 	const rndFn = function(strings, ...values) {
 		if (init) throw Error('distribution definition must be at initiation')
 		const {points, options, risks} = parser(strings, ...values)
-		return rndNs[rndNs.length] = new RandomNumber( metanorm.apply(null, points, options) )._link(riskNames, risks)
+		return rndNs[rndNs.length] = new RandomNumber( metanorm(...points, options) )._link(riskNames, risks)
 	}
 	const model = factory(rndFn)
 	init = true
-	console.log('sim.js - riskNames', riskNames, '; # variables', rndNs.length)
 	return new Sim(rndNs, riskNames, model, resolution)
 }
